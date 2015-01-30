@@ -43,25 +43,12 @@
     <property name="spacing">
      <number>1</number>
     </property>
-    <item row="2" column="0">
-     <widget class="QPushButton" name="saveButton">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>save</string>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="0">
      <layout class="QHBoxLayout" name="HorizontalLayout">
       <item>
        <widget class="QTextEdit" name="textEdit">
         <property name="styleSheet">
-         <string notr="true">font: 75 13pt &quot;Serif&quot;;</string>
+         <string notr="true">font: italic 14pt &quot;Ubuntu&quot;;</string>
         </property>
        </widget>
       </item>
@@ -145,22 +132,6 @@
  </resources>
  <connections>
   <connection>
-   <sender>saveButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>saveToFile()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>79</x>
-     <y>416</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>143</x>
-     <y>252</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>newButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
@@ -189,6 +160,22 @@
     <hint type="destinationlabel">
      <x>216</x>
      <y>15</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>textEdit</sender>
+   <signal>textChanged()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>saveToFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>164</x>
+     <y>371</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>191</x>
+     <y>403</y>
     </hint>
    </hints>
   </connection>

@@ -61,7 +61,7 @@ void MainWindow::loadText()
 void MainWindow::saveToFile()
 {
     QFile file(fileName);
-    file.open(QIODevice::ReadWrite | QIODevice::Text);
+    file.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out(&file);
     out << ui->textEdit->toPlainText();
     //out << "\n";
