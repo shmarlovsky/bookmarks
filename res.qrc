@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/delete.ico</file>
+        <file>img/new.ico</file>
+        <file>img/trayIcon.ico</file>
+    </qresource>
+</RCC>
