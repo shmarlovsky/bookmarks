@@ -13,11 +13,17 @@
     <height>417</height>
    </rect>
   </property>
+  <property name="mouseTracking">
+   <bool>false</bool>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Bookmarks</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="enabled">
@@ -99,7 +105,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="exitButton">
+       <widget class="QPushButton" name="deleteButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -132,38 +138,6 @@
  </resources>
  <connections>
   <connection>
-   <sender>newButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>newWindow()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>28</x>
-     <y>24</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>90</x>
-     <y>26</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>exitButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>deleteBookMark()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>250</x>
-     <y>12</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>216</x>
-     <y>15</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>textEdit</sender>
    <signal>textChanged()</signal>
    <receiver>MainWindow</receiver>
@@ -176,6 +150,22 @@
     <hint type="destinationlabel">
      <x>191</x>
      <y>403</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>deleteBookMark()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>244</x>
+     <y>16</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>212</x>
+     <y>13</y>
     </hint>
    </hints>
   </connection>

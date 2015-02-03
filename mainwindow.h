@@ -2,12 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QFile>
-#include <QDebug>
-#include <QTimer>
-#include <QSystemTrayIcon>
-#include <QMenu>
-#include <QMessageBox>
+#include <QPushButton>
 
 namespace Ui {
 class MainWindow;
@@ -20,35 +15,22 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    //load text from txt file
-    void loadText();
-private slots:
-    void newWindow();
-    void saveToFile();
-    void deleteBookMark();
-
-    //tray icon
-    void changeEvent(QEvent*);
-    void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
-    //void trayActionExecute();
-    void setTrayIconActions();
-    void showTrayIcon();
-
+   QPushButton *getNewButton();
+   QPushButton *getDeleteButton();
 
 private:
     Ui::MainWindow *ui;
     static unsigned int serialNumber;
     QString fileName;
-    QTimer *timer;
+    void loadTextfromFile();
 
-    //tray icon
-    QMenu *trayIconMenu;
-    QAction *newBookmarkAction;
-    QAction *minimizeAction;
-    QAction *restoreAction;
-    QAction *quitAction;
-    QSystemTrayIcon *trayIcon;
+public slots:
+    void changeEvent(QEvent*);
+    void saveToFile();
+    void deleteBookMark();
 
+signals:
+   void windowClosed();
 };
 
 
