@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>BookMark</class>
+ <widget class="QMainWindow" name="BookMark">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -140,7 +140,7 @@
   <connection>
    <sender>textEdit</sender>
    <signal>textChanged()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BookMark</receiver>
    <slot>saveToFile()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -156,16 +156,32 @@
   <connection>
    <sender>deleteButton</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>deleteBookMark()</slot>
+   <receiver>BookMark</receiver>
+   <slot>deleteBookmark()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>244</x>
-     <y>16</y>
+     <x>246</x>
+     <y>9</y>
     </hint>
     <hint type="destinationlabel">
-     <x>212</x>
-     <y>13</y>
+     <x>204</x>
+     <y>17</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>newButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BookMark</receiver>
+   <slot>createBookmark()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>16</x>
+     <y>14</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>54</x>
+     <y>19</y>
     </hint>
    </hints>
   </connection>
@@ -173,6 +189,7 @@
  <slots>
   <slot>newWindow()</slot>
   <slot>saveToFile()</slot>
-  <slot>deleteBookMark()</slot>
+  <slot>deleteBookmark()</slot>
+  <slot>createBookmark()</slot>
  </slots>
 </ui>

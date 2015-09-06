@@ -1,6 +1,6 @@
 
 #include <QApplication>
-#include "mainwindow.h"
+#include "bookmark.h"
 #include "tray.h"
 int main(int argc, char *argv[])
 {

@@ -1,17 +1,17 @@
 #include <QFile>
 #include <QDebug>
-#include "mainwindow.h"
+#include "bookmark.h"
 #include "ui_mainwindow.h"
 
-unsigned int MainWindow::serialNumber = 0;
+unsigned int BookMark::serialNumber = 0;
 
-MainWindow::MainWindow(QWidget *parent) :
+BookMark::BookMark(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::BookMark)
 {
 
-    qDebug() << "Kons!!!" << endl;
-    serialNumber++;
+    this->setWindowFlags(Qt::WindowMinimizeButtonHint | Qt::CustomizeWindowHint);
+
     ui->setupUi(this);
 
     qDebug() <<"SerialNumber: " <<serialNumber << endl;
@@ -24,20 +24,19 @@ MainWindow::MainWindow(QWidget *parent) :
     qDebug() <<"fileName: " <<fileName << endl;
 
     loadTextfromFile();
+    serialNumber++;
 
 }
 
 
-MainWindow::~MainWindow()
+BookMark::~BookMark()
 {
-    qDebug() << "DeKons!!!" << endl; 
     serialNumber--;
     delete ui;
-    emit windowClosed();
 }
 
 
-void MainWindow::loadTextfromFile()
+void BookMark::loadTextfromFile()
 {
 
     QFile file(fileName);
@@ -48,8 +47,21 @@ void MainWindow::loadTextfromFile()
     file.close();
 }
 
+void BookMark::createBookmark()
+{
+    emit createBookmarkRequest();
+}
 
-void MainWindow::saveToFile()
+void BookMark::deleteBookmark()
+{
+    QFile file(fileName);
+    file.remove();
+    close();
+    emit deleteBookmarkRequest(serialNumber);
+}
+
+
+void BookMark::saveToFile()
 {
     QFile file(fileName);
     file.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -60,25 +72,8 @@ void MainWindow::saveToFile()
 }
 
 
-void MainWindow::deleteBookMark()
-{
-    QFile file(fileName);
-    file.remove();
-    close();
-}
-
-QPushButton *MainWindow::getNewButton()
-{
-    return this->ui->newButton;
-}
-
-QPushButton *MainWindow::getDeleteButton()
-{
-    return this->ui->deleteButton;
-}
-
 // hide to tray instead of to icon
-void MainWindow::changeEvent(QEvent *event)
+void BookMark::changeEvent(QEvent *event)
 {
         //QMainWindow::changeEvent(event);
         if (event -> type() == QEvent::WindowStateChange)

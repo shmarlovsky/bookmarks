@@ -4,11 +4,11 @@
 #include <QSystemTrayIcon>
 #include <QMenu>
 
-#include "mainwindow.h"
+#include "bookmark.h"
 
 
 const int MAX = 10;
-class MainWindow;
+class BookMark;
 class Tray: public QObject
 {
     Q_OBJECT
@@ -18,23 +18,31 @@ public:
 
 public slots:
     void createBookMark();
+    void deleteBookMark(int number);
     void hideAll();
     void showAll();
-    void windowClosed();
+
+   // void windowClosed();
+
 
 private slots:
     void trayIconActivated(QSystemTrayIcon::ActivationReason reason);
 
 
 private:
+    //menu
     QMenu *trayIconMenu;
     QAction *createBookmarkAction;
     QAction *minimizeAction;
     QAction *restoreAction;
     QAction *quitAction;
     QSystemTrayIcon *trayIcon;
-    MainWindow* books[MAX];
-    static int windowCount;
+
+    static int bookmarkCount;
+    // max number of bookmarks
+
+    BookMark* books[MAX];
+    std::vector <BookMark*> booksList;
 
 };
 

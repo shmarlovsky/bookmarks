@@ -13,11 +13,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    tray.cpp
+    tray.cpp \
+    bookmark.cpp
 
-HEADERS  += mainwindow.h \
-    tray.h
+HEADERS  += \
+    tray.h \
+    bookmark.h
 
 FORMS    += mainwindow.ui
 

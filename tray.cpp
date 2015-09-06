@@ -2,7 +2,8 @@
 #include <QDebug>
 #include "tray.h"
 
-int Tray::windowCount = 0;
+int Tray::bookmarkCount = 0;
+//int Tray::MAX = 10;
 
 Tray::Tray()
 {
@@ -14,7 +15,7 @@ Tray::Tray()
 
     // Setting system tray's icon menu
     trayIconMenu = new QMenu();
-    trayIconMenu->setStyleSheet("background: gray");
+    //trayIconMenu->setStyleSheet("background: gray");
     trayIconMenu->addAction(createBookmarkAction);
     trayIconMenu->addAction (minimizeAction);
     trayIconMenu->addAction (restoreAction);
@@ -35,6 +36,7 @@ Tray::Tray()
     connect(minimizeAction, SIGNAL(triggered()), this, SLOT(hideAll()));
     connect(restoreAction, SIGNAL(triggered()), this, SLOT(showAll()));
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
+    //booksList.push_back(new BookMark());
 }
 
 Tray::~Tray()
@@ -59,25 +61,39 @@ void Tray::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 
 void Tray::createBookMark()
 {
-    if(windowCount<MAX)
+//    if(bookmarkCount<MAX)
+//    {
+//        books[bookmarkCount] = new BookMark();
+//       // connect(books[bookmarkCount], SIGNAL(createBookmarkRequest()), this, SLOT(createBookMark()));
+//        connect(books[bookmarkCount], SIGNAL(createBookmarkRequest()),this, SLOT(createBookMark()));
+//         connect(books[bookmarkCount], SIGNAL(deleteBookmarkRequest(int)),this, SLOT(deleteBookMark(int)));
+//        if(bookmarkCount>0)
+//        {
+//            books[bookmarkCount]->setAttribute(Qt::WA_DeleteOnClose);
+//        }
+//        books[bookmarkCount]->show();
+//        bookmarkCount++;
+//        qDebug() << "WindowCount (after incr.): " << bookmarkCount << endl;
+//    }
+
+    if(bookmarkCount<MAX)
     {
-        books[windowCount] = new MainWindow();
-        connect(books[windowCount]->getNewButton(), SIGNAL(clicked()), this, SLOT(createBookMark()));
-        connect(books[windowCount], SIGNAL(windowClosed()), this, SLOT(windowClosed()));
-        //connect(books[windowCount]->getDeleteButton(), SIGNAL(clicked()), this, SLOT(deleteBookMark()));
-        if(windowCount>0)
+        booksList.push_back(new BookMark());
+        connect(booksList.back(), SIGNAL(createBookmarkRequest()),this, SLOT(createBookMark()));
+        connect(booksList.back(), SIGNAL(deleteBookmarkRequest(int)),this, SLOT(deleteBookMark(int)));
+        if(bookmarkCount>0)
         {
-            books[windowCount]->setAttribute(Qt::WA_DeleteOnClose);
+            booksList.back()->setAttribute(Qt::WA_DeleteOnClose);
         }
-        books[windowCount]->show();
-        windowCount++;
-        qDebug() << "WindowCount (after incr.): " << windowCount << endl;
+        booksList.back()->show();
+        bookmarkCount++;
+        qDebug() << "WindowCount (after incr.): " << bookmarkCount << endl;
     }
 }
 
 void Tray::hideAll()
 {
-    for (int i=0; i<windowCount; i++)
+    for (int i=0; i<bookmarkCount; i++)
     {
         books[i]->hide();
         //books[i]->showMinimized();
@@ -87,18 +103,19 @@ void Tray::hideAll()
 
 void Tray::showAll()
 {
-    for (int i=0; i<windowCount; i++)
+    for (int i=0; i<bookmarkCount; i++)
     {
         books[i]->show();
     }
 }
 
-void Tray::windowClosed()
+void Tray::deleteBookMark(int number)
 {
-    windowCount--;
-    qDebug() << "WindowCount: " << windowCount << endl;
+      //std::vector<BookMark>::iterator iter = booksList.at(0);
+//    booksList.erase(iter);
+//    bookmarkCount--;
+//    booksList.resize(bookmarkCount);
+    bookmarkCount--;
+    qDebug() << "WindowCount: " << bookmarkCount << endl;
 }
-
-
-
 

@@ -5,32 +5,37 @@
 #include <QPushButton>
 
 namespace Ui {
-class MainWindow;
+class BookMark;
 }
 
-class MainWindow : public QMainWindow
+class BookMark : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
-   QPushButton *getNewButton();
-   QPushButton *getDeleteButton();
+    explicit BookMark(QWidget *parent = 0);
+    ~BookMark();
+
 
 private:
-    Ui::MainWindow *ui;
+    Ui::BookMark *ui;
     static unsigned int serialNumber;
     QString fileName;
     void loadTextfromFile();
 
+private slots:
+    void createBookmark();
+    void deleteBookmark();
+
 public slots:
     void changeEvent(QEvent*);
     void saveToFile();
-    void deleteBookMark();
+
 
 signals:
    void windowClosed();
+   void createBookmarkRequest();
+   void deleteBookmarkRequest(int);
 };
 
 
